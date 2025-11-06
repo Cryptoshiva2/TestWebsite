@@ -5,23 +5,25 @@ export default function AdminPage() {
   const [submissions, setSubmissions] = useState([]);
 
   useEffect(() => {
-    // In a real app, you'd fetch from a database here.
-    // For now, we’ll mock it.
+    // Fetch stored form submissions from your backend later
+    // For now, this just loads a mock list from localStorage
     const stored = JSON.parse(localStorage.getItem("submissions") || "[]");
     setSubmissions(stored);
   }, []);
 
   return (
     <main className="min-h-screen bg-gray-100 p-10">
-      <h1 className="text-3xl font-bold mb-6">Admin Panel</h1>
-      <p className="mb-8 text-gray-600">View incoming form submissions below:</p>
+      <h1 className="text-3xl font-bold mb-6 text-blue-700">Admin Panel</h1>
+      <p className="mb-8 text-gray-600">
+        View all form submissions below.
+      </p>
 
       {submissions.length === 0 ? (
-        <p>No submissions yet.</p>
+        <p className="text-gray-500">No submissions yet.</p>
       ) : (
         <ul className="space-y-4">
           {submissions.map((s, i) => (
-            <li key={i} className="bg-white p-4 rounded-lg shadow">
+            <li key={i} className="bg-white p-5 rounded-lg shadow">
               <p><strong>Name:</strong> {s.name}</p>
               <p><strong>Email:</strong> {s.email}</p>
               <p><strong>Organization:</strong> {s.organization}</p>
